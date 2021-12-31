@@ -27,13 +27,13 @@ public class CreatePhoneServlet extends HttpServlet {
             Phone phone = new Phone(name, brand, price,description);
             if (phone.isValid()){
                 phoneJpaRepository.save(phone);
-                resp.sendRedirect("/admin/product/list");
+                resp.sendRedirect("/admin/list");
             }
             else {
                 HashMap<String, String> errors = phone.getErrors();
                 req.setAttribute("errors", errors);
                 req.setAttribute("phone", phone);
-                req.getRequestDispatcher("/admin/product/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("/admin/phone/addphone.jsp").forward(req, resp);
             }
         }catch (Exception ex){
             resp.getWriter().println("Bad request");
